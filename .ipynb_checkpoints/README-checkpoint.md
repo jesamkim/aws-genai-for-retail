@@ -1,1 +1,0 @@
-# aws-genai-for-retail
