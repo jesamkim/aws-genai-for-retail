@@ -1,3 +1,4 @@
-# aws-genai-for-retail
+# AWS GenAI Workshop for Retail
+
 
 ![edm](img/edm.png)
