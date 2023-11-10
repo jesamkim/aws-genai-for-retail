@@ -1,0 +1,6 @@
+Pillow
+streamlit
+streamlit-drawable-canvas
+botocore
+boto3
+awscli
