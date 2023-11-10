@@ -54,7 +54,7 @@ def resize_image_to_model_compatible(image, base=64):
 
 
 # 이미지 응답을 가져오는 함수
-def get_image_response(prompt_content, mask_bytes, prompt_strenth, generation_step, seed):
+def get_image_response(prompt_content, image, mask_bytes, prompt_strenth, generation_step, seed):
     # 요청 바디 설정
     request_body = {
         "text_prompts": [{"text": prompt_content}],
@@ -66,7 +66,7 @@ def get_image_response(prompt_content, mask_bytes, prompt_strenth, generation_st
 
     # 원본 이미지 처리
     #image = Image.open(BytesIO(image_bytes))
-    image = Image.open('../data/1_product.png').convert("RGB")
+    #image = Image.open('../data/1_product.png').convert("RGB")
     resized_image = resize_image_to_model_compatible(image)
     image_bytes_io = BytesIO()
     resized_image.save(image_bytes_io, format='PNG')

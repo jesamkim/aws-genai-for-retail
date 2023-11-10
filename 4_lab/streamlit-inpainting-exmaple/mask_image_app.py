@@ -99,7 +99,7 @@ with col3:
                 mask_bytes = convert_mask_data_to_image_bytes(canvas_result.json_data, image_pil.size)
                 
                 with st.spinner("이미지를 생성하는 중..."):
-                    generated_image = glib.get_image_response(prompt_text, mask_bytes, prompt_strenth, generation_step, seed)
+                    generated_image = glib.get_image_response(prompt_text, image, mask_bytes, prompt_strenth, generation_step, seed)
                 
                 st.image(generated_image, caption='생성된 이미지', use_column_width=True)
             else:
