@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates the infrastructure for SageMaker Studio to communicate with Redshift Serverless
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: Required Parameters for Setup
+        Parameters:
+          - ProjectName
+          - DatabaseName
+          - VpcCIDR
+          - PublicSubnet1CIDR
+          - PrivateSubnet1CIDR
+          - PrivateSubnet2CIDR
+          - PrivateSubnet3CIDR
+          - EmailAddress
+    ParameterLabels:
+      ProjectName:
+        default: Project Name
+      DatabaseName:
+        default: Database Name
+      VpcCIDR:
+        default: Vpc CIDR
+      PublicSubnet1CIDR:
+        default: Public Subnet 1 CIDR
+      PrivateSubnet1CIDR:
+        default: Private Subnet 1 CIDR
+      PrivateSubnet2CIDR:
+        default: Private Subnet 2 CIDR
+      PrivateSubnet3CIDR:
+        default: Private Subnet 3 CIDR
+
+Parameters:
+  ProjectName:
+    Description: SageMaker Studio project name
+    Type: String
+    Default: sagemaker-studio
+  DatabaseName:
+    Description: Redshift serverless database name
+    Type: String
+    Default: dev
+  StudioDomainName:
+    Description: SageMaker Studio domain name
+    Type: String
+    Default: workshop-domain
+  StudioUserProfileName:
+    Description: SageMaker Studio user profile name
+    Type: String
+    Default: workshop-user
+  VpcCIDR:
+    Description: VPC CIDR
+    Type: String
+    Default: 10.1.0.0/16
+  PublicSubnet1CIDR:
+    Description: VPC public subnet 1 CIDR
+    Type: String
+    Default: 10.1.1.0/24
+  PrivateSubnet1CIDR:
+    Description: VPC private subnet 1 CIDR
+    Type: String
+    Default: 10.1.2.0/24
+  PrivateSubnet2CIDR:
+    Description: VPC private subnet 2 CIDR
+    Type: String
+    Default: 10.1.3.0/24
+  PrivateSubnet3CIDR:
+    Description: VPC private subnet 3 CIDR
+    Type: String
+    Default: 10.1.4.0/24
+  EmailAddress:
+    Description: Email that receives notifications when documents have been successfully added
+    Type: String
+
+Resources:
+  VPC:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        ProjectName: !Ref ProjectName
+        VpcCIDR: !Ref VpcCIDR
+        PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
+        PrivateSubnet1CIDR: !Ref PrivateSubnet1CIDR
+        PrivateSubnet2CIDR: !Ref PrivateSubnet2CIDR
+        PrivateSubnet3CIDR: !Ref PrivateSubnet3CIDR
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sagemaker-studio-vpc.yaml?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkYwRAIgK5JO2U3eBSD4Teo41HYe8E0HwRTJHriPlHm%2BBgt10%2F8CIHbDh98hDjuLuHYWrUiL9wt4TBlMB3E34zO5cwi7EAk9KuYCCCoQBBoMMzE4MzUxNTU2MzAxIgyhttUYLWHsIt%2F5rQ8qwwJWtF5oYBti0Jhgt9PVg1eZ4anjGIZL4KZulI3Y%2FOdc3CwnSDEYORbykrAfz0OxJped%2FTpHRJYjk5TsMzQClzPj7rG1WIcBdpLwglCNwdVTAP8rRWnt%2FC9yBQVwZTsHDhENb3FQPpP%2BsFbrcJp%2FQTKl0FMZbcBFCmZT7W5oBP5UOm93NXENyra1l6gGhGyt6Xb5L%2Fr08WhT27CRv7t1ig5Si%2B7vVYJKrFrRpI0XwFnCJlmIV1JqCkmupJFwu0LKyctWQ8HQpQRSKC0uyCFtyK7de5nGr%2BLGwV36ixZ3UuNkt2SNPhn11FEeozZVSNytre9yUvHsMEt3UivIgMjThMeKS21urgfTgrCkT0P3ljmvKVE4FfXXF1hL7FOh2LBlMRQZfL3xxuM4UAvLeLBnAVr9HeDX4RttS4b%2BpDktfA%2Bs%2FNns0DDR5MCqBjqIAiBrG7ifRn%2Bl3eBaq%2F3qBrcJWKX6UjbxKLHbO5QjC5WELZ%2BTJKCQ3rK1VsjbrmtScCRE%2FLaqdGvSlLw6MHZHEYexUTwRPAAvbGerydLqQqMIhtKq8uh1zwh0B1igoJn7TwaWhoMDjw%2FqeJOzmy2B2MpUuo4FKsTNXofELeCqeMwOJ56QnrZk5Gf7Lm5qmBWiH1Q9MhFFvYD6R9LUaJy1mbF4CmrBLhciJHbdmKkl1qhxhn3FzwAkcWGAgAPK2kVzH%2B8ZUG9jVSt6EBjbWrw7MGBoe239UqqCzSKHlsqfT1t2181kiNs3g%2B%2BAt1Ticjy7sULx9hHW1dAwnVPFaK7yKxbTlPapcv4Ywg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231112T082913Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIAUUHZ3H3GSVQ4ZGMR%2F20231112%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=8eb5f7d62d68530255d26636bc03efb2542031924b506e99d102a49d25873d2f
+  
+  IAM:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sagemaker-studio-iam.yaml?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkYwRAIgK5JO2U3eBSD4Teo41HYe8E0HwRTJHriPlHm%2BBgt10%2F8CIHbDh98hDjuLuHYWrUiL9wt4TBlMB3E34zO5cwi7EAk9KuYCCCoQBBoMMzE4MzUxNTU2MzAxIgyhttUYLWHsIt%2F5rQ8qwwJWtF5oYBti0Jhgt9PVg1eZ4anjGIZL4KZulI3Y%2FOdc3CwnSDEYORbykrAfz0OxJped%2FTpHRJYjk5TsMzQClzPj7rG1WIcBdpLwglCNwdVTAP8rRWnt%2FC9yBQVwZTsHDhENb3FQPpP%2BsFbrcJp%2FQTKl0FMZbcBFCmZT7W5oBP5UOm93NXENyra1l6gGhGyt6Xb5L%2Fr08WhT27CRv7t1ig5Si%2B7vVYJKrFrRpI0XwFnCJlmIV1JqCkmupJFwu0LKyctWQ8HQpQRSKC0uyCFtyK7de5nGr%2BLGwV36ixZ3UuNkt2SNPhn11FEeozZVSNytre9yUvHsMEt3UivIgMjThMeKS21urgfTgrCkT0P3ljmvKVE4FfXXF1hL7FOh2LBlMRQZfL3xxuM4UAvLeLBnAVr9HeDX4RttS4b%2BpDktfA%2Bs%2FNns0DDR5MCqBjqIAiBrG7ifRn%2Bl3eBaq%2F3qBrcJWKX6UjbxKLHbO5QjC5WELZ%2BTJKCQ3rK1VsjbrmtScCRE%2FLaqdGvSlLw6MHZHEYexUTwRPAAvbGerydLqQqMIhtKq8uh1zwh0B1igoJn7TwaWhoMDjw%2FqeJOzmy2B2MpUuo4FKsTNXofELeCqeMwOJ56QnrZk5Gf7Lm5qmBWiH1Q9MhFFvYD6R9LUaJy1mbF4CmrBLhciJHbdmKkl1qhxhn3FzwAkcWGAgAPK2kVzH%2B8ZUG9jVSt6EBjbWrw7MGBoe239UqqCzSKHlsqfT1t2181kiNs3g%2B%2BAt1Ticjy7sULx9hHW1dAwnVPFaK7yKxbTlPapcv4Ywg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231112T082941Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIAUUHZ3H3GSVQ4ZGMR%2F20231112%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6c9c905b39408b40ee128de1031949b814c6245ba6ec56afa72e197c59d26d72
+
+  SageMaker:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        DomainName: !Ref StudioDomainName
+        UserProfileName: !Ref StudioUserProfileName
+        ExecutionRoleArn: !GetAtt IAM.Outputs.ExecutionRoleArn
+        VpcId: !GetAtt VPC.Outputs.VpcId
+        SubnetIds: !GetAtt VPC.Outputs.SubnetIds
+        SecurityGroups: !GetAtt VPC.Outputs.SageMakerSecurityGroup
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sagemaker-studio-domain.yaml?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkYwRAIgK5JO2U3eBSD4Teo41HYe8E0HwRTJHriPlHm%2BBgt10%2F8CIHbDh98hDjuLuHYWrUiL9wt4TBlMB3E34zO5cwi7EAk9KuYCCCoQBBoMMzE4MzUxNTU2MzAxIgyhttUYLWHsIt%2F5rQ8qwwJWtF5oYBti0Jhgt9PVg1eZ4anjGIZL4KZulI3Y%2FOdc3CwnSDEYORbykrAfz0OxJped%2FTpHRJYjk5TsMzQClzPj7rG1WIcBdpLwglCNwdVTAP8rRWnt%2FC9yBQVwZTsHDhENb3FQPpP%2BsFbrcJp%2FQTKl0FMZbcBFCmZT7W5oBP5UOm93NXENyra1l6gGhGyt6Xb5L%2Fr08WhT27CRv7t1ig5Si%2B7vVYJKrFrRpI0XwFnCJlmIV1JqCkmupJFwu0LKyctWQ8HQpQRSKC0uyCFtyK7de5nGr%2BLGwV36ixZ3UuNkt2SNPhn11FEeozZVSNytre9yUvHsMEt3UivIgMjThMeKS21urgfTgrCkT0P3ljmvKVE4FfXXF1hL7FOh2LBlMRQZfL3xxuM4UAvLeLBnAVr9HeDX4RttS4b%2BpDktfA%2Bs%2FNns0DDR5MCqBjqIAiBrG7ifRn%2Bl3eBaq%2F3qBrcJWKX6UjbxKLHbO5QjC5WELZ%2BTJKCQ3rK1VsjbrmtScCRE%2FLaqdGvSlLw6MHZHEYexUTwRPAAvbGerydLqQqMIhtKq8uh1zwh0B1igoJn7TwaWhoMDjw%2FqeJOzmy2B2MpUuo4FKsTNXofELeCqeMwOJ56QnrZk5Gf7Lm5qmBWiH1Q9MhFFvYD6R9LUaJy1mbF4CmrBLhciJHbdmKkl1qhxhn3FzwAkcWGAgAPK2kVzH%2B8ZUG9jVSt6EBjbWrw7MGBoe239UqqCzSKHlsqfT1t2181kiNs3g%2B%2BAt1Ticjy7sULx9hHW1dAwnVPFaK7yKxbTlPapcv4Ywg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231112T083007Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43199&X-Amz-Credential=ASIAUUHZ3H3GSVQ4ZGMR%2F20231112%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=1ca1575106f08d63394c5c9e931f4a5d5118d955a7967fd4161bd494dd4aeba4
+
+  Redshift:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        # ProjectName: !Ref ProjectName
+        DatabaseName: !Ref DatabaseName
+        SubnetId: !GetAtt VPC.Outputs.SubnetIds
+        SecurityGroupIds: !GetAtt VPC.Outputs.RedshiftSecurityGroup
+        IAMRole: !GetAtt IAM.Outputs.ExecutionRoleArn
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/rsserverless-setup.yaml?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkYwRAIgK5JO2U3eBSD4Teo41HYe8E0HwRTJHriPlHm%2BBgt10%2F8CIHbDh98hDjuLuHYWrUiL9wt4TBlMB3E34zO5cwi7EAk9KuYCCCoQBBoMMzE4MzUxNTU2MzAxIgyhttUYLWHsIt%2F5rQ8qwwJWtF5oYBti0Jhgt9PVg1eZ4anjGIZL4KZulI3Y%2FOdc3CwnSDEYORbykrAfz0OxJped%2FTpHRJYjk5TsMzQClzPj7rG1WIcBdpLwglCNwdVTAP8rRWnt%2FC9yBQVwZTsHDhENb3FQPpP%2BsFbrcJp%2FQTKl0FMZbcBFCmZT7W5oBP5UOm93NXENyra1l6gGhGyt6Xb5L%2Fr08WhT27CRv7t1ig5Si%2B7vVYJKrFrRpI0XwFnCJlmIV1JqCkmupJFwu0LKyctWQ8HQpQRSKC0uyCFtyK7de5nGr%2BLGwV36ixZ3UuNkt2SNPhn11FEeozZVSNytre9yUvHsMEt3UivIgMjThMeKS21urgfTgrCkT0P3ljmvKVE4FfXXF1hL7FOh2LBlMRQZfL3xxuM4UAvLeLBnAVr9HeDX4RttS4b%2BpDktfA%2Bs%2FNns0DDR5MCqBjqIAiBrG7ifRn%2Bl3eBaq%2F3qBrcJWKX6UjbxKLHbO5QjC5WELZ%2BTJKCQ3rK1VsjbrmtScCRE%2FLaqdGvSlLw6MHZHEYexUTwRPAAvbGerydLqQqMIhtKq8uh1zwh0B1igoJn7TwaWhoMDjw%2FqeJOzmy2B2MpUuo4FKsTNXofELeCqeMwOJ56QnrZk5Gf7Lm5qmBWiH1Q9MhFFvYD6R9LUaJy1mbF4CmrBLhciJHbdmKkl1qhxhn3FzwAkcWGAgAPK2kVzH%2B8ZUG9jVSt6EBjbWrw7MGBoe239UqqCzSKHlsqfT1t2181kiNs3g%2B%2BAt1Ticjy7sULx9hHW1dAwnVPFaK7yKxbTlPapcv4Ywg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231112T083033Z&X-Amz-SignedHeaders=host&X-Amz-Expires=720&X-Amz-Credential=ASIAUUHZ3H3GSVQ4ZGMR%2F20231112%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=69152ec2fdf3bb23c95425c16db4d76a9e12f02bef5266e2bb4a5d5661ae19e4
+
+  Kendra:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        EmailAddress: !Ref EmailAddress
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/kendra-setup.yml?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLW5vcnRoZWFzdC0yIkYwRAIgK5JO2U3eBSD4Teo41HYe8E0HwRTJHriPlHm%2BBgt10%2F8CIHbDh98hDjuLuHYWrUiL9wt4TBlMB3E34zO5cwi7EAk9KuYCCCoQBBoMMzE4MzUxNTU2MzAxIgyhttUYLWHsIt%2F5rQ8qwwJWtF5oYBti0Jhgt9PVg1eZ4anjGIZL4KZulI3Y%2FOdc3CwnSDEYORbykrAfz0OxJped%2FTpHRJYjk5TsMzQClzPj7rG1WIcBdpLwglCNwdVTAP8rRWnt%2FC9yBQVwZTsHDhENb3FQPpP%2BsFbrcJp%2FQTKl0FMZbcBFCmZT7W5oBP5UOm93NXENyra1l6gGhGyt6Xb5L%2Fr08WhT27CRv7t1ig5Si%2B7vVYJKrFrRpI0XwFnCJlmIV1JqCkmupJFwu0LKyctWQ8HQpQRSKC0uyCFtyK7de5nGr%2BLGwV36ixZ3UuNkt2SNPhn11FEeozZVSNytre9yUvHsMEt3UivIgMjThMeKS21urgfTgrCkT0P3ljmvKVE4FfXXF1hL7FOh2LBlMRQZfL3xxuM4UAvLeLBnAVr9HeDX4RttS4b%2BpDktfA%2Bs%2FNns0DDR5MCqBjqIAiBrG7ifRn%2Bl3eBaq%2F3qBrcJWKX6UjbxKLHbO5QjC5WELZ%2BTJKCQ3rK1VsjbrmtScCRE%2FLaqdGvSlLw6MHZHEYexUTwRPAAvbGerydLqQqMIhtKq8uh1zwh0B1igoJn7TwaWhoMDjw%2FqeJOzmy2B2MpUuo4FKsTNXofELeCqeMwOJ56QnrZk5Gf7Lm5qmBWiH1Q9MhFFvYD6R9LUaJy1mbF4CmrBLhciJHbdmKkl1qhxhn3FzwAkcWGAgAPK2kVzH%2B8ZUG9jVSt6EBjbWrw7MGBoe239UqqCzSKHlsqfT1t2181kiNs3g%2B%2BAt1Ticjy7sULx9hHW1dAwnVPFaK7yKxbTlPapcv4Ywg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231112T083052Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIAUUHZ3H3GSVQ4ZGMR%2F20231112%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=78dcb982e350138fb95a8d1395f126851ae7f15dd83d6f0d7adbb00ca48c6b6b

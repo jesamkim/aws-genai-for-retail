@@ -12,7 +12,7 @@
 4. Stable Diffusion을 이용해서 제품 디자인과 광고를 위한 이미지 생성하는 방법을 학습힙니다.
 
 - 실습 시작 전 아래의 Cloudformation을 실행합니다.
-> 0_setup/
+> 0_setup/workshop-template.yaml
 
 - Cloudformation에서 Create Stack을 클릭합니다.
 ![edm](img/cf-1.png)

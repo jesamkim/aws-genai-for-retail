@@ -419,3 +419,6 @@ Outputs:
   S3Bucket:
     Description: S3 Bucket that stores workshop documents
     Value: !Ref WorkshopBucket
+  KendraIndex:
+    Description: Kendra index id
+    Value: !GetAtt WorkshopKendraIndex.Id

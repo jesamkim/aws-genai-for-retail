@@ -1,0 +1,136 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  DatabaseName:
+    Description: The name of the first database in the Amazon Redshift Serverless environment.
+    Type: String
+    Default: dev
+  AdminUsername:
+    Description: The administrator's user name for Redshift Serverless Namespace being created.
+    Type: String
+    Default: admin
+  AdminUserPassword:
+    Description: The password associated with admin user.
+    Type: String
+    Default: Admin1234!
+    NoEcho: 'true'
+  NamespaceName:
+    Description: A unique identifier that defines the Namespace.
+    Type: String
+    Default: workshop-namespace
+  WorkgroupName:
+    Description: A unique identifier that defines the Workspace.
+    Type: String
+    Default: workshop-workgroup
+  BaseRPU:
+    Description: Base RPU for Redshift Serverless Workgroup.
+    Type: Number
+    Default: 32
+  PubliclyAccessible:
+    Description: Redshift Serverless instance to be publicly accessible.
+    Type: String
+    Default: false
+  SubnetId:
+    Description: You must have at least three subnets, and they must span across three Availability Zones
+    Type: List<AWS::EC2::Subnet::Id>
+  SecurityGroupIds:
+    Description: The list of SecurityGroupIds in your Virtual Private Cloud (VPC).
+    Type: List<AWS::EC2::SecurityGroup::Id>
+  IAMRole:
+    Description: Associate an IAM Role to your Serverless namespace
+    Type: CommaDelimitedList
+  LogExportsList:
+    Description: Provide comma seperate values from list "userlog","connectionlog","useractivitylog".  E.g userlog,connectionlog,useractivitylog.  If left blank, LogExport is turned off.
+    Type: CommaDelimitedList 
+    Default: userlog,connectionlog,useractivitylog
+  EnhancedVpcRouting: 
+    Description: The value that specifies whether to enable enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.
+    Type: String
+    Default: false    
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Namespace parameters
+        Parameters:
+          - NamespaceName
+          - DatabaseName
+          - AdminUsername
+          - AdminUserPassword
+          - IAMRole
+          - LogExportsList          
+      - Label:
+          default: Workgroup parameters
+        Parameters:
+            - WorkgroupName
+            - BaseRPU
+            - PubliclyAccessible
+            - SubnetId
+            - SecurityGroupIds
+            - EnhancedVpcRouting            
+    ParameterLabels:
+      DatabaseName:
+        default: "Database Name"
+      AdminUsername:
+        default: "Admin User Name"
+      AdminUserPassword:
+        default: "Admin User Password"
+      NamespaceName:
+        default: "Namespace"
+      WorkgroupName:
+        default: "Workgroup"
+      BaseRPU:
+        default: "Base RPU"
+      PubliclyAccessible:
+        default: "Publicly accessible"
+      SubnetId:
+        default: "Subnet Ids (Select 3 Subnet Ids spanning 3 AZs)"
+      SecurityGroupIds:
+        default: "Security Group Id"
+      IAMRole:
+        default: "Associate IAM Role"
+      EnhancedVpcRouting:
+        default: "Enhanced VPC Routing"  
+      LogExportsList:
+        default: "Log Export List"
+Resources:
+  RedshiftServerlessNamespace:
+    Type: 'AWS::RedshiftServerless::Namespace'
+    Properties:
+      AdminUsername:
+        Ref: AdminUsername
+      AdminUserPassword:
+        Ref: AdminUserPassword
+      DbName:
+        Ref: DatabaseName
+      NamespaceName:
+        Ref: NamespaceName
+      IamRoles:
+        Ref: IAMRole
+      LogExports:
+        Ref: LogExportsList        
+  RedshiftServerlessWorkgroup:
+    Type: 'AWS::RedshiftServerless::Workgroup'
+    Properties:
+      WorkgroupName:
+        Ref: WorkgroupName
+      NamespaceName:
+        Ref: NamespaceName
+      BaseCapacity:
+        Ref: BaseRPU
+      PubliclyAccessible:
+        Ref: PubliclyAccessible
+      SubnetIds:
+        Ref: SubnetId
+      SecurityGroupIds:
+        Ref: SecurityGroupIds
+      EnhancedVpcRouting:
+        Ref: EnhancedVpcRouting        
+    DependsOn:
+      - RedshiftServerlessNamespace
+Outputs:
+  ServerlessNamespace:
+    Description: Name of the namespace
+    Value: !Ref NamespaceName
+  ServerlessWorkgroup:
+    Description: Name of the workgroup
+    Value: !Ref WorkgroupName

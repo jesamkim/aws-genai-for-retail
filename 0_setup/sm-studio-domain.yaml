@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates a SageMaker Studio domain with 1 user profile
+
+Parameters:
+  DomainName:
+    Type: String
+  ExecutionRoleArn:
+    Type: String
+  VpcId:
+    Type: String
+  SubnetIds:
+    Type: CommaDelimitedList
+  SecurityGroups:
+    Type: CommaDelimitedList
+  UserProfileName:
+    Type: String
+
+Resources:
+  SageMakerStudioDomain:
+    Type: AWS::SageMaker::Domain
+    Properties:
+      AppNetworkAccessType: VpcOnly
+      AuthMode: IAM
+      DefaultUserSettings:
+        ExecutionRole: !Ref ExecutionRoleArn
+        SecurityGroups: !Ref SecurityGroups
+      DomainName: !Ref DomainName
+      DomainSettings:
+        SecurityGroupIds: !Ref SecurityGroups
+      SubnetIds: !Ref SubnetIds
+      VpcId: !Ref VpcId
+
+  StudioUserProfile:
+    Type: AWS::SageMaker::UserProfile
+    Properties:
+      DomainId: !GetAtt SageMakerStudioDomain.DomainId
+      UserProfileName: !Ref UserProfileName
+      UserSettings:
+        ExecutionRole: !Ref ExecutionRoleArn

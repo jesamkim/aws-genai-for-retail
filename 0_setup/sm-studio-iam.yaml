@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates IAM Roles for SageMaker Studio domain and user profile
+
+Resources:
+  SageMakerUserExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - sagemaker.amazonaws.com
+                - redshift.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: / 
+      Policies: 
+        - PolicyName: SageMakerRedshiftServerlessPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - redshift-serverless:GetCredentials
+                  - redshift-serverless:GetNamespace
+                  - redshift-serverless:ListWorkgroups
+                  - redshift-serverless:GetWorkgroup
+                Resource: '*'
+        - PolicyName: bedrock-access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - bedrock:*
+                Resource: '*'
+        - PolicyName: kendra-access
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - kendra:Query
+                  - kendra:Retrieve
+                  - kendra:Describe*
+                  - kendra:List*
+                Resource: '*'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+      RoleName: SageMakerUserExecutionRole
+
+  SageMakerDomainExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - sagemaker.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /    
+      Policies: 
+        - PolicyName: SageMakerDomainPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - license-manager:ExtendLicenseConsumption
+                  - license-manager:ListReceivedLicenses
+                  - license-manager:GetLicense
+                  - license-manager:CheckoutLicense
+                  - license-manager:CheckInLicense
+                  - logs:CreateLogDelivery
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:DeleteLogDelivery
+                  - logs:Describe*
+                  - logs:GetLogDelivery
+                  - logs:GetLogEvents
+                  - logs:ListLogDeliveries
+                  - logs:PutLogEvents
+                  - logs:PutResourcePolicy
+                  - logs:UpdateLogDelivery
+                  - sagemaker:CreateApp
+                Resource: '*'
+      RoleName: SageMakerDomainExecutionRole
+
+Outputs:
+  ExecutionRoleArn:
+    Value: !GetAtt SageMakerUserExecutionRole.Arn
+  DomainExecutionRoleArn:
+    Value: !GetAtt SageMakerDomainExecutionRole.Arn
