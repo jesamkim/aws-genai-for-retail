@@ -8,16 +8,17 @@ Amazon Bedrock은 타사 제공업체 및 Amazon의 FM에 대한 액세스를 �
 
 ### 노트북 환경 선택
 
-이 워크샵은 원하는 환경에서 실행할 수 있는 **Python notebooks** 로 제공됩니다:
+이 워크샵은 SageMaker Studio 환경에서 실행할 수 있는 **Python notebooks** 로 제공됩니다:
 
 - 풍부한 AI/ML 기능을 갖춘 완전 관리형 환경의 경우, [SageMaker Studio](https://aws.amazon.com/sagemaker/studio/)를 사용하는 것을 권장합니다. 빠르게 시작하려면 [도메인 빠른 설정 지침](https://docs.aws.amazon.com/sagemaker/latest/dg/onboard-quick-start.html)을 참조하세요.
 - 완전 관리형이지만 좀 더 기본적인 환경을 원하시면 [SageMaker Notebook 인스턴스](https://docs.aws.amazon.com/sagemaker/latest/dg/howitworks-create-ws.html)를 사용하실 수 있습니다.
 - 기존(로컬 또는 기타) 노트북 환경을 사용하시려면 [AWS 호출을 위한 자격 증명](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)이 있는지 확인하세요.
 
 
-### Bedrock에 대한 AWS IAM 권한 활성화
+### Option: Bedrock에 대한 AWS IAM 권한 활성화
 
-The AWS identity you assume from your notebook environment (which is the [*Studio/notebook Execution Role*](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) from SageMaker, or could be a role or IAM User for self-managed notebooks), must have sufficient [AWS IAM permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) to call the Amazon Bedrock service.
+> 실습에서 사용될 IAM은 Cloudformation으로 사전에 정의되어있어 아래 내용은 생략 가능합니다.
+
 노트북 환경에서 가정하는 AWS ID(SageMaker의 [*Studio/notebook Execution Role*](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html)이거나 자체 관리 노트북의 역할 또는 IAM 사용자일 수 있음)는 Amazon Bedrock 서비스를 호출할 수 있는 충분한 [AWS IAM 권한](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)을 가지고 있어야 합니다.
 
 Bedrock 접근 권한을 부여하려면 다음과 같이 하세요:
