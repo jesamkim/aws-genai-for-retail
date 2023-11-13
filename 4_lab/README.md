@@ -1,4 +1,5 @@
-# Bedrock Stable Diffusion 실습 - 이미지 생성
+# Bedrock - Stable Diffusion XL을 이용한 "제품 디자인과 광고를 위한 이미지 생성"
+## 실습 소개
 
 ### 개요
 
