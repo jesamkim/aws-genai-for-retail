@@ -12,7 +12,8 @@
 4. Stable Diffusion을 이용해서 제품 디자인과 광고를 위한 이미지 생성하는 방법을 학습힙니다.
 
 - 실습 시작 전 아래의 Cloudformation을 실행합니다.
-> 0_setup/workshop-template.yaml
+> 0_setup/workshop-template.yaml 
+[workshop-template.yaml](https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/workshop-template.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T063927Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c09036ff506b79ef2e6cf17929c12650573c36555b6334ca7bd5f86022fb7c19)
 
 - Cloudformation에서 Create Stack을 클릭합니다.
 ![edm](img/cf-1.png)
@@ -31,4 +32,5 @@
 ## 실습에 사용된 자원 삭제
 
 실습이 완료된 이후에는 더 이상 필요하지 않은 자원으로 인한 비용발생을 막기위해 사용된 자원을 반드시 삭제해야합니다.
+
 [자원 삭제](CleanUp.md)
