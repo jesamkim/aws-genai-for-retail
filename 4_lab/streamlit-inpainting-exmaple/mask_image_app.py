@@ -30,13 +30,13 @@ def convert_mask_data_to_image_bytes(mask_data, image_shape, stroke_width=50):
 
 
 # Streamlit 페이지 설정
-st.set_page_config(layout="wide", page_title="Image Generation with Masking")
+st.set_page_config(layout="wide", page_title="Bedrock-SDXL_v0.8-Inpainting-DEMO")
 
 # 제목 설정
-st.title("이미지 생성기")
+st.title("Bedrock-SDXL-Inpainting-DEMO")
 
 # 세 개의 컬럼 생성
-col1, col2, col3 = st.columns([3, 1, 3])  # col2는 마스크 표시용으로 더 작게 설정
+col1, col2, col3 = st.columns([2, 1, 2])  # col2는 마스크 표시용으로 더 작게 설정
 
 # 이미지 로드
 image = Image.open('../data/1_product.png').convert("RGB")
