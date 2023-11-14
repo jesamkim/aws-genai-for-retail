@@ -1,6 +1,6 @@
-Pillow
-streamlit
-streamlit-drawable-canvas
+Pillow==10.0.1
+streamlit==1.27.2
+streamlit-drawable-canvas==0.9.3
 botocore
 boto3
 awscli
