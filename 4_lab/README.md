@@ -42,7 +42,7 @@ Amazon Bedrock은 Stability AI의 이미지 생성을 위한 독자적인 기반
     ![Text to Image](./images/72-img-2-img.png)
 
 ## Setup
-이 섹션의 실습을 실행하기 전에 [Bedrock boto3 setup 노트북](../0_setup/1_bedrock_boto3_setup.ipynb)을 실행했는지 확인합니다.
+이 섹션의 실습을 실행하기 전에 [Bedrock setup](../0_setup/0_bedrock_setup.ipynb)을 진행했는지 확인합니다.
 
 ## Helper
 이미지 생성을 용이하게 하기 위해 `/utils/bedrock.py`에 유틸리티 클래스 `Bedrock`이 구현되어 있습니다. 이를 통해 이미지를 쉽게 생성할 수 있습니다.
