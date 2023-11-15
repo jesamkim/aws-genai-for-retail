@@ -117,4 +117,4 @@ Resources:
     Properties:
       Parameters:
         EmailAddress: !Ref EmailAddress
-      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/kendra-setup.yml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T012633Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=890a3af42eb1632382c2487b7ecab1a3703894612eee1efbc61e1b8815729e23
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/kendra-setup.yml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231115%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231115T075824Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=380b5e20cd0fdb669f6aeded184ef12b41850fb567ebc2e30ee7c5e31dcfa7e3

@@ -262,6 +262,9 @@ Resources:
               cfnresponse.send(event, context, status, {}, new_physical_id)
 
   ApplyNotification:
+    DependsOn:
+      - ApplyBucketNotificationFunction
+      - DocRefresherLambda
     Type: Custom::ApplyNotification
     Properties:
       ServiceToken: !GetAtt 'ApplyBucketNotificationFunction.Arn'
