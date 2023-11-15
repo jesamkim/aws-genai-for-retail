@@ -20,10 +20,10 @@
 
 Amazon Bedrock은 Stability AI의 이미지 생성을 위한 독자적인 기반 모델인 [Stable Diffusion XL](https://stability.ai/stablediffusion)을 지원합니다. Stable Diffusion은 확산의 원리에 따라 작동하며, 각각 다른 목적을 가진 여러 모델로 구성됩니다:
 
-1. The CLIP text encoder;
-2. The VAE decoder;
-3. The UNet, and
-4. The VAE_post_quant_conv
+1. CLIP text encoder
+2. VAE decoder
+3. UNet
+4. VAE_post_quant_conv
 
 이 아키텍처를 통해 작동 원리를 확인할 수 있습니다:
 ![Stable Diffusion Architecture](./images/sd.png)
