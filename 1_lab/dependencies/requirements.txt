@@ -7,4 +7,5 @@ streamlit
 botocore
 boto3
 awscli
+anthropic
 jq
