@@ -4,7 +4,7 @@
 
 ## 자원 삭제
 
-본 실습에서 사용된 SageMaker Studio User profile과 Amazon EFS 등 일부 자원은 사용자가 직접 삭제해야합니다.
+본 실습에서 사용된 SageMaker Studio User profile과 Amazon EFS, Amazon S3 오브젝트 등 Cloudformation이 아닌 사용자에 의해 생성된 일부 자원은 사용자가 직접 삭제해야합니다.
 
 1. Amazon SageMaker 메뉴 중 Domain을 선택한 후 실습에 사용된 workshop-domain을 클릭합니다. 그리고 실습에 사용했던 workshop-user 사용자 프로파일을 클릭하면 아래와 같은 사용자 상세정보가 조회됩니다.
 ![edm](img/cu-9.png)
