@@ -29,6 +29,9 @@
 7. SageMaker Studio에서 사용되는 Amazon EFS를 삭제합니다.
 ![edm](img/cu-7.png)
 
+8. 검색에 사용된 문서파일을 Amazon S3에서 삭제합니다.
+![edm](img/cu-13.png)
+
 ## Cloudformation 삭제
 
 - 실습에 사용된 아래의 Cloudformation을 삭제합니다.
