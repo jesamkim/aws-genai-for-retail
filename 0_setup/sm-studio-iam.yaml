@@ -27,6 +27,8 @@ Resources:
                   - redshift-serverless:GetNamespace
                   - redshift-serverless:ListWorkgroups
                   - redshift-serverless:GetWorkgroup
+                  - redshift-serverless:DeleteWorkgroup
+                  - redshift-serverless:DeleteNamespace
                 Resource: '*'
         - PolicyName: bedrock-access
           PolicyDocument:
