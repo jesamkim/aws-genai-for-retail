@@ -87,7 +87,7 @@ Resources:
   IAM:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sm-studio-iam.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T012416Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=26976fc775dc188ac668b5f42206ba090ad875c7728fcbe969f7483e485e4539
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sm-studio-iam.yaml.yml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231116%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231116T040816Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8fd1d068275536e8057964e8fb5f1fa60fd83ab37517626c6e650ab0a36636f1
 
   SageMaker:
     Type: AWS::CloudFormation::Stack
