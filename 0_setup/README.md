@@ -1,6 +1,45 @@
-# Amazon Bedrock Workshop
+# GenAI Workshop for Retail
 
-이 실습에서는 Python에서 Amazon Bedrock 서비스에 연결하는 기본 사항을 안내합니다.
+## SageMaker Studio 실행
+
+![edm](images/sm-1.png)
+
+위와 같이 Cloudformation으로 모든 스택이 정상적으로 설치가 되었다면 SageMaker Studio를 실행합니다.
+
+AWS 콘솔에서 SageMaker로 이동합니다.
+![edm](images/sm-6.png)
+
+좌측 메뉴에서 Domains를 선택합니다.
+![edm](images/sm-2.png)
+
+이미 생성된 workshop-domain을 선택합니다.
+![edm](images/sm-3.png)
+
+User Profiles에서 Launch를 클릭하고 Studio를 선택합니다.
+![edm](images/sm-4.png)
+
+아래와 같이 SageMaker Studio가 실행됩니다.
+![edm](images/sm-5.png)
+
+SageMaker Studio Home에서 Open Launcher를 선택합니다.
+![edm](images/sm-8.png)
+
+Launcher에서 System Terminal을 실행합니다.
+![edm](images/sm-9.png)
+
+Terminal에서 아래 명령어를 실행해서 실습할 자료들을 다운로드 받습니다.
+git clone https://github.com/jesamkim/aws-genai-for-retail.git
+
+![edm](images/sm-10.png)
+
+Note: 모든 노트북은 아래와 같이 Data Science 3.0, Python 3, ml.t5.medium에서 가장 잘 실행됩니다.
+![edm](images/sm-7.png)
+
+### 이제 모든 실습환경이 만들어졌습니다. 
+
+# Option Amazon Bedrock 안내 
+
+아래에서는 Amazon Bedrock 서비스에 연결하는 기본 사항을 안내합니다.
 
 Amazon Bedrock은 타사 제공업체 및 Amazon의 FM에 대한 액세스를 제공하는 완전 관리형 서비스로, API를 통해 이용할 수 있습니다. 베드락을 사용하면 다양한 모델 중에서 사용 사례에 가장 적합한 모델을 찾을 수 있습니다.
 
