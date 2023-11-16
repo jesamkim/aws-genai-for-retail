@@ -51,8 +51,10 @@ Resources:
                   - kendra:Describe*
                   - kendra:List*
                   - kendra:DeleteDataSource
+                  - kendra:DeleteIndex
                   - logs:DeleteLogGroup
                   - SNS:GetTopicAttributes
+                  - SNS:DeleteTopic
                   - iam:DeleteRolePolicy
                   - iam:DetachRolePolicy
 				          - iam:DeleteRole
