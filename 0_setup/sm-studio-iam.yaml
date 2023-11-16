@@ -50,6 +50,15 @@ Resources:
                   - kendra:Retrieve
                   - kendra:Describe*
                   - kendra:List*
+                  - kendra:DeleteDataSource
+                  - logs:DeleteLogGroup
+                  - SNS:GetTopicAttributes
+                  - iam:DeleteRolePolicy
+                  - iam:DetachRolePolicy
+				          - iam:DeleteRole
+                  - lambda:DeleteFunction
+                  - lambda:InvokeFunction
+				          - lambda:RemovePermission
                 Resource: '*'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
