@@ -43,8 +43,7 @@ Resources:
           PolicyDocument:
             Version: 2012-10-17
             Statement:
-              -
-                Effect: Allow
+              - Effect: Allow
                 Action:
                   - kendra:Query
                   - kendra:Retrieve
@@ -52,15 +51,16 @@ Resources:
                   - kendra:List*
                   - kendra:DeleteDataSource
                   - kendra:DeleteIndex
+                  - kendra:StartDataSourceSyncJob
                   - logs:DeleteLogGroup
                   - SNS:GetTopicAttributes
                   - SNS:DeleteTopic
                   - iam:DeleteRolePolicy
                   - iam:DetachRolePolicy
-				          - iam:DeleteRole
+                  - iam:DeleteRole
                   - lambda:DeleteFunction
                   - lambda:InvokeFunction
-				          - lambda:RemovePermission
+                  - lambda:RemovePermission
                 Resource: '*'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSageMakerFullAccess

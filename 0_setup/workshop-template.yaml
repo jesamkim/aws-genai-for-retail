@@ -13,7 +13,6 @@ Metadata:
           - PrivateSubnet1CIDR
           - PrivateSubnet2CIDR
           - PrivateSubnet3CIDR
-          - EmailAddress
     ParameterLabels:
       ProjectName:
         default: Project Name
@@ -67,9 +66,6 @@ Parameters:
     Description: VPC private subnet 3 CIDR
     Type: String
     Default: 10.1.4.0/24
-  EmailAddress:
-    Description: Email that receives notifications when documents have been successfully added
-    Type: String
 
 Resources:
   VPC:
@@ -87,7 +83,7 @@ Resources:
   IAM:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sm-studio-iam.yaml.yml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231116%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231116T040816Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8fd1d068275536e8057964e8fb5f1fa60fd83ab37517626c6e650ab0a36636f1
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/sm-studio-iam.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231116%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231116T054437Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ff714365bd8c09ed3d233664a101205b2442fef4dde36bcd2085a3e75681c78b
 
   SageMaker:
     Type: AWS::CloudFormation::Stack
@@ -115,6 +111,4 @@ Resources:
   Kendra:
     Type: AWS::CloudFormation::Stack
     Properties:
-      Parameters:
-        EmailAddress: !Ref EmailAddress
-      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/kendra-setup.yml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231115%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231115T075824Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=380b5e20cd0fdb669f6aeded184ef12b41850fb567ebc2e30ee7c5e31dcfa7e3
+      TemplateURL: https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/kendra-setup.yml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231116%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231116T051925Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6eaf2a83cf2693c7f363e03e69dca5d4b10a6ac12dadd0a0a1cc30fce7ecaaf2
