@@ -2,6 +2,16 @@
 
 ![edm](img/edm.png)
 
+## 실습 목차
+
+본 실습 예제 코드는 아래 5가지로 구성되어 있습니다. 
+
+- 0_setup: 실습 환경 구성을 위한 Cloudformation 파일
+- 1_lab: 리테일러를 위한 효과적인 제품 설명 및 요약 생성
+- 2_lab: 비즈니스 데이터 분석을 위한 Text-to-SQL 실습
+- 3_lab: 매장 현장 직원을 위한 Q&A 챗봇
+- 4_lab: 제품 디자인과 광고를 위한 이미지 생성
+
 ## 실습 환경 구성
 
 본 실습은 Amazon Bedrock을 이용한 4가지 활용 사례 중심으로 구성되었습니다. 실습에는 SageMaker Studio를 사용하며 각 실습에서 사용되는 Amazon Kendra, Amazon Redshift Serverless 등의 인프라 배포를 위해 Cloudformation 템플릿을 제공합니다.
@@ -13,7 +23,7 @@
 
 - 실습 시작 전 아래의 Cloudformation을 실행합니다.
 > 0_setup/workshop-template.yaml 
-[workshop-template.yaml](https://retaildemostore-base-rmtqij67oxpv-clo-webuibucket-pd8maaxyy2nk.s3.us-east-1.amazonaws.com/workshop_cloudformation/workshop-template.yaml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJBJM3TXZANY6SKFA%2F20231113%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T063927Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c09036ff506b79ef2e6cf17929c12650573c36555b6334ca7bd5f86022fb7c19)
+[workshop-template.yaml] https://github.com/jesamkim/aws-genai-for-retail/blob/main/0_setup/workshop-template.yaml
 
 - Cloudformation에서 Create Stack을 클릭합니다.
 ![edm](img/cf-1.png)
@@ -23,7 +33,6 @@
 ![edm](img/cf-3.png)
 - Stack Name은 반드시 "genai-workshop"으로 입력합니다. 실습에서는 스택 이름을 사용해서 배포된 리소스 정보를 가져오도록 되어있습니다.
 ![edm](img/cf-4.png)
-- 동기화 Notification을 받을 이메일주소를 입력합니다.
 ![edm](img/cf-5.png)
 ![edm](img/cf-6.png)
 - 추가 스택 배포를 위해 아래와 같이 클릭하고 Submit을 클릭합니다. 
